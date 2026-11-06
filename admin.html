@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Admin Panel - TIVRA Pay Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin" class="ms-app is-admin">
+
+<div class="messenger" id="messenger">
+
+    <!-- ===== CHAT LIST PANE ===== -->
+    <section class="ms-pane ms-list-pane" id="listPane">
+        <header class="ms-bar ms-bar-admin">
+            <div class="ms-bar-title">
+                <span class="ms-admin-dot"></span>
+                <span>Admin Panel</span>
+            </div>
+            <a href="index.html" class="ms-icon-btn" aria-label="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+            </a>
+        </header>
+
+        <div class="ms-search">
+            <input type="search" id="chatSearch" placeholder="Search by UID, mobile, name or topic">
+        </div>
+
+        <div class="ms-list" id="chatList"></div>
+
+        <div class="ms-empty" id="emptyState" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+            <p class="ms-empty-title">No chats yet</p>
+            <p class="ms-empty-sub">Chats created by users on the Online Chat page will appear here.</p>
+        </div>
+    </section>
+
+    <!-- ===== CONVERSATION PANE ===== -->
+    <section class="ms-pane ms-chat-pane" id="chatPane" hidden>
+        <header class="ms-bar ms-topbar">
+            <button type="button" class="ms-icon-btn" id="backBtn" aria-label="Back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+
+            <button type="button" class="ms-peer" id="peerBtn">
+                <span class="ms-avatar" id="peerAvatar">?</span>
+                <span class="ms-peer-text">
+                    <span class="ms-peer-name" id="peerName">User</span>
+                    <span class="ms-peer-status" id="peerStatus"></span>
+                </span>
+            </button>
+
+            <button type="button" class="ms-icon-btn" id="chatMenuBtn" aria-label="Chat options">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="5" r="2"/>
+                    <circle cx="12" cy="12" r="2"/>
+                    <circle cx="12" cy="19" r="2"/>
+                </svg>
+            </button>
+        </header>
+
+        <div class="ms-messages" id="messages"></div>
+
+        <div class="ms-attach-menu" id="attachMenu" hidden>
+            <button type="button" class="ms-attach-item" data-attach="image">
+                <span class="ms-attach-ic img">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="3"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </span>
+                <span>Image</span>
+            </button>
+            <button type="button" class="ms-attach-item" data-attach="file">
+                <span class="ms-attach-ic doc">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </span>
+                <span>File</span>
+            </button>
+        </div>
+
+        <footer class="ms-composer">
+            <button type="button" class="ms-icon-btn" id="attachBtn" aria-label="Attach">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                </svg>
+            </button>
+            <input type="text" id="messageInput" placeholder="Type a reply" autocomplete="off">
+            <button type="button" class="ms-send-btn" id="sendBtn" aria-label="Send">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </button>
+        </footer>
+
+        <input type="file" id="imageInput" accept="image/*" hidden>
+        <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip,.csv" hidden>
+    </section>
+
+</div>
+
+<!-- ===== ADMIN LOGIN ===== -->
+<div class="modal-overlay" id="gatePopup">
+    <div class="modal-box gate-box">
+        <h2>Admin Login</h2>
+        <p class="modal-sub">Enter your admin UID and mobile number to open the panel.</p>
+        <form id="gateForm" novalidate>
+            <div class="field">
+                <label for="gateUid">Admin UID</label>
+                <input type="text" id="gateUid" placeholder="Enter admin UID" autocomplete="off" spellcheck="false">
+                <small class="err"></small>
+            </div>
+            <div class="field">
+                <label for="gatePhone">Mobile Number</label>
+                <input type="tel" id="gatePhone" placeholder="Enter 10 digit mobile number" maxlength="10" inputmode="numeric" autocomplete="tel">
+                <small class="err"></small>
+            </div>
+            <button type="submit" class="submit-btn">Open Panel</button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== CHAT INFO ===== -->
+<div class="modal-overlay" id="infoPopup" hidden>
+    <div class="modal-box">
+        <div class="ms-modal-head">
+            <h2>Chat Info</h2>
+            <button type="button" class="icon-close" data-close="infoPopup" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="ms-info-hero">
+            <span class="ms-avatar lg" id="infoAvatar">?</span>
+            <div class="ms-info-name" id="infoName">User</div>
+            <div class="ms-info-topic" id="infoTopic"></div>
+        </div>
+        <div class="detail-facts" id="infoFacts"></div>
+        <div class="ms-info-actions">
+            <button type="button" class="ms-info-btn" id="infoEditBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/>
+                </svg>
+                Edit Chat
+            </button>
+            <button type="button" class="ms-info-btn danger" id="infoDeleteBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                    <path d="M10 11v6M14 11v6"/>
+                </svg>
+                Delete Chat
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== EDIT CHAT ===== -->
+<div class="modal-overlay" id="editPopup" hidden>
+    <div class="modal-box">
+        <div class="ms-modal-head">
+            <h2>Edit Chat</h2>
+            <button type="button" class="icon-close" data-close="editPopup" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <form id="editForm" novalidate>
+            <div class="field">
+                <label for="editName">Name</label>
+                <input type="text" id="editName" placeholder="Enter name">
+                <small class="err"></small>
+            </div>
+            <div class="field">
+                <label for="editUid">UID</label>
+                <input type="text" id="editUid" placeholder="Enter UID">
+                <small class="err"></small>
+            </div>
+            <div class="field">
+                <label for="editPhone">Mobile Number</label>
+                <input type="tel" id="editPhone" maxlength="10" inputmode="numeric" placeholder="Enter mobile">
+                <small class="err"></small>
+            </div>
+            <div class="field" id="editAmountField">
+                <label for="editAmount">Amount</label>
+                <input type="text" id="editAmount" inputmode="decimal" placeholder="Enter amount">
+            </div>
+            <div class="field">
+                <label for="editIssue">Topic</label>
+                <select id="editIssue">
+                    <option>Deposit Problem</option>
+                    <option>Withdrawal Problem</option>
+                    <option>Account Verification Problem</option>
+                    <option>General Query</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== MESSAGE ACTIONS ===== -->
+<div class="sheet-overlay" id="msgSheet" hidden>
+    <div class="ms-sheet">
+        <div class="ms-sheet-head" id="msgSheetHead">Message</div>
+        <button type="button" class="ms-sheet-item" data-sheet="reply">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 17 4 12 9 7"/>
+                <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
+            </svg>
+            Reply
+        </button>
+        <button type="button" class="ms-sheet-item" data-sheet="edit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/>
+            </svg>
+            Edit
+        </button>
+        <button type="button" class="ms-sheet-item danger" data-sheet="delete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+            </svg>
+            Delete
+        </button>
+        <button type="button" class="ms-sheet-item cancel" data-sheet="cancel">Cancel</button>
+    </div>
+</div>
+
+<!-- ===== EDIT MESSAGE ===== -->
+<div class="modal-overlay" id="editMsgPopup" hidden>
+    <div class="modal-box">
+        <div class="ms-modal-head">
+            <h2>Edit Message</h2>
+            <button type="button" class="icon-close" data-close="editMsgPopup" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <form id="editMsgForm" novalidate>
+            <div class="field">
+                <label for="editMsgText">Message</label>
+                <textarea id="editMsgText" rows="3"></textarea>
+                <small class="err"></small>
+            </div>
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+    </div>
+</div>
+
+<!-- ===== CONFIRM ===== -->
+<div class="modal-overlay" id="confirmPopup" hidden>
+    <div class="modal-box confirm-box">
+        <h2 id="confirmTitle">Are you sure?</h2>
+        <p class="modal-sub" id="confirmText">This action cannot be undone.</p>
+        <div class="confirm-actions">
+            <button type="button" class="ghost-btn" data-close="confirmPopup">Cancel</button>
+            <button type="button" class="submit-btn danger-btn" id="confirmOk">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== IMAGE LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-inner">
+        <div class="lightbox-bar">
+            <span class="lightbox-name" id="lightboxName">Image</span>
+            <div class="lightbox-tools">
+                <a class="lightbox-btn" id="lightboxDownload" download="image.jpg">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download
+                </a>
+                <button type="button" class="lightbox-btn" id="lightboxClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                    Close
+                </button>
+            </div>
+        </div>
+        <div class="lightbox-stage">
+            <img id="lightboxImg" alt="Full view">
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="script.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>
