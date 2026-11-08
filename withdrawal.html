@@ -14,7 +14,13 @@
                 <img src="LOGO/logo.png" alt="TIVRA Pay" class="brand-logo">
                 <span class="brand-name">TIVRA Pay</span>
             </a>
-            <span class="header-badge">Help Center</span>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuDrawer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="7" x2="20" y2="7"/>
+                    <line x1="4" y1="12" x2="20" y2="12"/>
+                    <line x1="4" y1="17" x2="20" y2="17"/>
+                </svg>
+            </button>
         </div>
     </header>
 
@@ -114,9 +120,34 @@
     </div>
 
     <footer class="site-footer">
-        <p>&copy; TIVRA Pay Support. Need urgent help? Call 1800-000-000</p>
+        <p>&copy; TIVRA Pay. All rights reserved.</p>
     </footer>
 
+    
+    <!-- ===== MENU DRAWER ===== -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <aside class="menu-drawer" id="menuDrawer" aria-hidden="true" aria-label="Menu">
+        <div class="drawer-head">
+            <span class="drawer-title">
+                <img src="LOGO/logo.png" alt="">
+                TIVRA Pay
+            </span>
+            <button class="drawer-close" id="menuClose" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="terms.html" class="drawer-link"><span class="drawer-emoji">📄</span> Terms &amp; Conditions</a>
+            <a href="privacy.html" class="drawer-link"><span class="drawer-emoji">🔒</span> Privacy Policy</a>
+            <a href="about.html" class="drawer-link"><span class="drawer-emoji">ℹ️</span> About</a>
+        </nav>
+        <div class="drawer-foot">TIVRA Pay Help Center</div>
+    </aside>
+
     <script src="script.js"></script>
+    <script src="menu.js"></script>
 </body>
 </html>
