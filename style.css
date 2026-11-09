@@ -1,4 +1,4 @@
-﻿* {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -1987,10 +1987,29 @@ body.ms-app {
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.drawer-link .drawer-emoji {
-    font-size: 18px;
-    line-height: 1;
+.drawer-link .drawer-icon {
+    width: 34px;
+    height: 34px;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf4fe;
+    border: 1px solid #d6e9fb;
+    border-radius: 10px;
+    color: #2196f3;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.drawer-link .drawer-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.drawer-link:hover .drawer-icon,
+.drawer-link.active .drawer-icon {
+    background: #dbeafe;
+    border-color: #2196f3;
 }
 
 .drawer-link:hover {
@@ -2044,9 +2063,42 @@ body.ms-app {
     margin-bottom: 12px;
 }
 
-.info-card h2 .emoji {
-    font-size: 18px;
-    line-height: 1;
+.info-card h2 .info-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf4fe;
+    border: 1px solid #d6e9fb;
+    border-radius: 9px;
+    color: #2196f3;
+}
+
+.info-card h2 .info-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* SVG list icons (About services) */
+.info-list.icon-list li {
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.info-list.icon-list li::before {
+    display: none;
+}
+
+.info-list .li-icon {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #2196f3;
 }
 
 .info-card p {
