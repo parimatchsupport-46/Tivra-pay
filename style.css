@@ -1836,3 +1836,320 @@ body.ms-app {
     .ms-attach-item { font-size: 11.5px; padding: 9px 6px; }
     .ms-attach-ic { width: 36px; height: 36px; }
 }
+
+/* ============================================================
+   MENU BUTTON + RIGHT DRAWER (public pages)
+   ============================================================ */
+.menu-btn {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #e6e9ef;
+    border-radius: 12px;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.menu-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.menu-btn:hover {
+    border-color: #2196f3;
+    background: #f3f9ff;
+    color: #2196f3;
+}
+
+.menu-btn:focus-visible {
+    outline: 2px solid #2196f3;
+    outline-offset: 2px;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+    z-index: 300;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: 300px;
+    max-width: 84vw;
+    background: #ffffff;
+    box-shadow: -12px 0 32px rgba(15, 23, 42, 0.16);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    z-index: 310;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+.menu-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px;
+    border-bottom: 1px solid #e6e9ef;
+}
+
+.drawer-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.drawer-title img {
+    width: 32px;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+.drawer-close {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fa;
+    border: none;
+    border-radius: 10px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.drawer-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+.drawer-close:hover {
+    background: #e3f2fd;
+    color: #2196f3;
+}
+
+.drawer-close:focus-visible {
+    outline: 2px solid #2196f3;
+    outline-offset: 2px;
+}
+
+.drawer-nav {
+    padding: 14px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+.drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.drawer-link .drawer-emoji {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.drawer-link:hover {
+    background: #f3f9ff;
+    color: #2196f3;
+}
+
+.drawer-link.active {
+    background: #e3f2fd;
+    color: #2196f3;
+}
+
+.drawer-link:focus-visible {
+    outline: 2px solid #2196f3;
+    outline-offset: -2px;
+}
+
+.drawer-foot {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid #e6e9ef;
+    font-size: 12.5px;
+    color: #9aa1ac;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   INFO PAGES (Terms, Privacy, About)
+   ============================================================ */
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background: #ffffff;
+    border: 1px solid #e6e9ef;
+    border-radius: 14px;
+    padding: 22px 20px;
+}
+
+.info-card h2 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 16.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.info-card h2 .emoji {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.info-card p + p {
+    margin-top: 10px;
+}
+
+.info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.info-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.info-list li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2196f3;
+}
+
+.info-list li strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.info-note {
+    background: #f3f9ff;
+    border: 1px solid #d6e9fb;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    color: #1e5f96;
+    line-height: 1.65;
+}
+
+.info-updated {
+    text-align: center;
+    font-size: 12.5px;
+    color: #9aa1ac;
+    margin-bottom: 26px;
+}
+
+.info-steps {
+    list-style: none;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.info-steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 42px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.info-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3f2fd;
+    color: #2196f3;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 50%;
+}
+
+.info-steps li strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .menu-btn { width: 38px; height: 38px; border-radius: 10px; }
+    .menu-btn svg { width: 20px; height: 20px; }
+    .info-card { padding: 18px 16px; }
+}
