@@ -2205,3 +2205,114 @@ body.ms-app {
     .menu-btn svg { width: 20px; height: 20px; }
     .info-card { padding: 18px 16px; }
 }
+
+/* ============================================================
+   ACCOUNT VERIFICATION — home top banner + verify page
+   ============================================================ */
+.verify-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: calc(100% - 40px);
+    max-width: 580px;
+    margin: 14px auto 0;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #d6e9fb;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(33, 150, 243, 0.10);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    animation: verifyBannerIn 0.4s ease-out;
+}
+
+@keyframes verifyBannerIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.verify-banner:hover {
+    border-color: #2196f3;
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.16);
+    transform: translateY(-1px);
+}
+
+.verify-banner:active { transform: translateY(0); }
+
+.verify-banner:focus-visible {
+    outline: 2px solid #2196f3;
+    outline-offset: 2px;
+}
+
+.verify-banner-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3f2fd;
+    border: 1px solid #d6e9fb;
+    border-radius: 50%;
+    color: #2196f3;
+}
+
+.verify-banner-icon svg { width: 20px; height: 20px; }
+
+.verify-banner-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.verify-banner-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.verify-banner-desc {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.verify-banner-arrow {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #2196f3;
+}
+
+/* Verify page */
+.verify-form { margin-bottom: 30px; }
+
+.verify-hero-icon {
+    width: 64px;
+    height: 64px;
+    margin: 4px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3f2fd;
+    border: 1px solid #d6e9fb;
+    border-radius: 50%;
+    color: #2196f3;
+}
+
+.verify-hero-icon svg { width: 30px; height: 30px; }
+
+.verify-note {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: #9aa1ac;
+    text-align: center;
+    line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    .verify-banner { padding: 11px 12px; gap: 10px; }
+    .verify-banner-icon { width: 36px; height: 36px; }
+    .verify-banner-title { font-size: 14px; }
+}

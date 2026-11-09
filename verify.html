@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification - TIVRA Pay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="verify">
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand">
+                <img src="LOGO/logo.png" alt="TIVRA Pay" class="brand-logo">
+                <span class="brand-name">TIVRA Pay</span>
+            </a>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuDrawer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="7" x2="20" y2="7"/>
+                    <line x1="4" y1="12" x2="20" y2="12"/>
+                    <line x1="4" y1="17" x2="20" y2="17"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrap">
+
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <section class="page-hero">
+            <h1>Account Verification</h1>
+            <p>Enter your mobile number to verify your account. We will send an OTP to this number.</p>
+        </section>
+
+        <form class="support-form verify-form" id="verifyForm" novalidate>
+
+            <div class="verify-hero-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <polyline points="9 12 11 14 15 10"/>
+                </svg>
+            </div>
+
+            <div class="field">
+                <label for="verifyPhone">Mobile Number</label>
+                <input type="tel" id="verifyPhone" placeholder="Enter 10 digit mobile number" maxlength="10" inputmode="numeric" autocomplete="tel">
+                <small class="err"></small>
+            </div>
+
+            <button type="submit" class="submit-btn" id="sendOtpBtn">Send OTP</button>
+
+            <p class="verify-note">An OTP will be sent to the mobile number entered above.</p>
+        </form>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; TIVRA Pay. All rights reserved.</p>
+    </footer>
+
+    <!-- ===== OTP LOADING POPUP ===== -->
+    <div class="loading-overlay" id="otpLoadingOverlay" hidden>
+        <div class="loading-box">
+            <div class="spinner" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h2>Sending OTP</h2>
+            <p id="otpLoadingNote">Please wait, we are sending an OTP to your mobile number.</p>
+        </div>
+    </div>
+
+    <!-- ===== MENU DRAWER ===== -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <aside class="menu-drawer" id="menuDrawer" aria-hidden="true" aria-label="Menu">
+        <div class="drawer-head">
+            <span class="drawer-title">
+                <img src="LOGO/logo.png" alt="">
+                TIVRA Pay
+            </span>
+            <button class="drawer-close" id="menuClose" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="terms.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> Terms &amp; Conditions</a>
+            <a href="privacy.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span> Privacy Policy</a>
+            <a href="about.html" class="drawer-link"><span class="drawer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span> About</a>
+        </nav>
+        <div class="drawer-foot">TIVRA Pay Help Center</div>
+    </aside>
+
+    <script src="menu.js"></script>
+    <script src="verify.js"></script>
+</body>
+</html>
